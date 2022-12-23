@@ -104,9 +104,9 @@ Returns a vector of % allocations.
 """
 function allocate(X, lower, upper; rf = 0.0, denoise = false, fullinvest = true, 
     method = "MSR")
-    T, N = size(X)
+    N, T = size(X)
     w = ones(N)/N
-    Σ = cov(X)
+    Σ = cov(X, dims=2)
     Σ .= 0.5 * (Σ .+ Σ')
     if denoise
         q = N/T
@@ -119,7 +119,7 @@ function allocate(X, lower, upper; rf = 0.0, denoise = false, fullinvest = true,
         upper = upper * ones(N)
     end
     if method == "MSR"
-        μ = vec(mean(X, dims=1))
+        μ = vec(mean(X, dims=2))
         w .= solve(Σ, μ, lower, upper, rf = rf, fullinvest = fullinvest)
     elseif method == "MV"
         w .= solve(Σ, lower, upper, fullinvest = fullinvest)
