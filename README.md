@@ -8,12 +8,21 @@ $$\text{max}_w \; \mathrm{J}(w)$$
 
 s.t.
 
-$$l \leq w \leq u$$ and
+$$l \leq w \leq u$$ 
+
+and
+
 $$0 \leq w^T\mathbb{1} \leq 1,$$
 
 where $w$ is the vector of % weights and
-$$\mathrm{J}(w) = \frac{\mu^Tw - r_f}{\sqrt{w^T\Sigma w}}$$ for maximum Sharpe ratio (MSR) portfolio and 
-$$\mathrm{J}(w) = w^T\Sigma w$$ for minimum variance (MV) portfolio.
+
+$$\mathrm{J}(w) = \frac{\mu^Tw - r_f}{\sqrt{w^T\Sigma w}}$$ 
+
+for maximum Sharpe ratio (MSR) portfolio and 
+
+$$\mathrm{J}(w) = w^T\Sigma w$$ 
+
+for minimum variance (MV) portfolio.
 
 
 Covariance matrix of returns $\Sigma$ and vector of mean returns $\mu$ are estimated from historical returns data.
