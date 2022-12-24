@@ -2,7 +2,7 @@ module OptimalPortfolios
 
 using JuMP, Ipopt, LinearAlgebra, Statistics
 
-export denoisecov, allocate
+export denoisecov, allocate, backtest
 
 function marcenko_pastur(λ,σ,q)
     σ2 = σ * σ
