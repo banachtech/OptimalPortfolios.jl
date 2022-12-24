@@ -52,8 +52,7 @@ julia> allocate(X, lower, upper; fullinvest = true, denoise = true, method = "MV
 Backtest optimal portfolio allocations. -obs_ is the size of historical returns window used to compute optimal portfolio and _hold_ is the holding or rebalance period. Transaction costs are assumed to be zero. P is the $N \times T$ matrix of prices.
 
 ```julia
-julia> res = backtest(px, obs, hold, lower, upper; rf = 0.0, fullinvest=true, 
-denoise=true, method = "MSR")
+julia> res = backtest(px, obs, hold, lower, upper; rf = 0.0, fullinvest = true, denoise = true, method = "MSR")
 julia> plot(res.nav)
 julia> println(res.wt)
 ```
