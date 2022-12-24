@@ -130,4 +130,29 @@ function allocate(X, lower, upper; rf = 0.0, denoise = false, fullinvest = true,
     return w
 end
 
+"""
+    backtest(px, obs, hold, lower, upper; rf = 0.0, fullinvest=true, 
+denoise=true, method = "MSR")
+
+Backtest optimal portfolio allocations. At any t, historical price data from t-obs-2 to t-1 (a total of obs number of return points) are used to compute optimal portfolio. This portfolio is held till t + hold and then the process is repeated. Transaction costs are assumed to be zero.
+
+Return net asset value, allocations and index of rebalance times.
+"""
+function backtest(px, obs, hold, lower, upper; rf = 0.0, fullinvest=true, 
+    denoise=true, method = "MSR")
+    N, T = size(px)
+    rng = obs+2:hold:T
+    wt = zeros(N,length(rng))
+    nav = Float64[1.0]
+    for (i,t) in enumerate(rng)
+        x = log.(px[:,t-obs:t-1]) .- log.(px[:,t-obs-1:t-2])
+        wt[:,i] = allocate(x, lower, upper, rf=rf, denoise=denoise, 
+            fullinvest=fullinvest, method = method)
+        if i < length(rng)
+            push!(nav, nav[end] * (1 + dot(wt[:,i], (px[:,rng[i+1]] .- px[:,t]) ./ px[:,t])))
+        end
+    end
+    return (nav=nav, wt=wt, tid=collect(rng))
+end
+
 end # module OptimalPortfolios
