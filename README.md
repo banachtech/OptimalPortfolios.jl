@@ -14,7 +14,7 @@ and
 
 $$0 \leq w^T\mathbb{1} \leq 1,$$
 
-where $w$ is the vector of % weights and the objective function $\mathrm{J}(w) = \frac{\mu^Tw - r_f}{\sqrt{w^T\Sigma w}}$ for maximum Sharpe ratio (MSR) portfolio and $\mathrm{J}(w) = w^T\Sigma w$ for minimum variance (MV) portfolio.
+where $w$ is the vector of % weights and the objective function $\mathrm{J}(w) = \frac{\mu^Tw - r_f}{\sqrt{w^T\Sigma w}}$ for maximum Sharpe ratio (MSR) portfolio and $\mathrm{J}(w) = -w^T\Sigma w$ for minimum variance (MV) portfolio.
 
 
 Covariance matrix of returns $\Sigma$ and vector of mean returns $\mu$ are estimated from historical returns data. Estimation of $\mu$ is notoriously unreliable and for that reason MV is often preferred over MSR. There are several methods available for robust estimation of $\Sigma$ and this package offers a denoising option based on random matrix theory (Marcenko-Pastur). 
